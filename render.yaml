@@ -2,11 +2,10 @@ services:
   # 1. Auth Service
   - type: web
     name: cortex-auth
-    env: node
+    env: docker
     plan: free
-    rootDir: backend/services/auth
-    buildCommand: npm install
-    startCommand: npm start
+    dockerfilePath: backend/services/auth/Dockerfile
+    dockerContext: backend
     envVars:
       - key: PORT
         value: 8001
@@ -18,11 +17,10 @@ services:
   # 2. Chat Service
   - type: web
     name: cortex-chat
-    env: node
+    env: docker
     plan: free
-    rootDir: backend/services/chat
-    buildCommand: npm install
-    startCommand: npm start
+    dockerfilePath: backend/services/chat/Dockerfile
+    dockerContext: backend
     envVars:
       - key: PORT
         value: 8002
@@ -34,11 +32,10 @@ services:
   # 3. Agent Service
   - type: web
     name: cortex-agent
-    env: node
+    env: docker
     plan: free
-    rootDir: backend/services/agent
-    buildCommand: npm install
-    startCommand: npm start
+    dockerfilePath: backend/services/agent/Dockerfile
+    dockerContext: backend
     envVars:
       - key: PORT
         value: 8003
@@ -76,11 +73,10 @@ services:
   # 4. Billing Service
   - type: web
     name: cortex-billing
-    env: node
+    env: docker
     plan: free
-    rootDir: backend/services/billing
-    buildCommand: npm install
-    startCommand: npm start
+    dockerfilePath: backend/services/billing/Dockerfile
+    dockerContext: backend
     envVars:
       - key: PORT
         value: 8004
@@ -99,11 +95,10 @@ services:
   # 5. API Gateway
   - type: web
     name: cortex-gateway
-    env: node
+    env: docker
     plan: free
-    rootDir: backend/gateway
-    buildCommand: npm install
-    startCommand: npm start
+    dockerfilePath: backend/gateway/Dockerfile
+    dockerContext: backend
     envVars:
       - key: PORT
         value: 8000
