@@ -1,0 +1,102 @@
+services:
+  # 1. Auth Service
+  - type: web
+    name: cortex-auth
+    env: node
+    rootDir: backend/services/auth
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 8001
+      - key: MONGODB_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+
+  # 2. Chat Service
+  - type: web
+    name: cortex-chat
+    env: node
+    rootDir: backend/services/chat
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 8002
+      - key: MONGODB_URL
+        sync: false
+      - key: REDIS_URL
+        sync: false
+
+  # 3. Agent Service
+  - type: web
+    name: cortex-agent
+    env: node
+    rootDir: backend/services/agent
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 8003
+      - key: REDIS_URL
+        sync: false
+      - key: GOOGLE_API_KEY
+        sync: false
+      - key: TAVILY_API_KEY
+        sync: false
+      - key: AUTH_SERVICE
+        fromService:
+          name: cortex-auth
+          type: web
+          property: host
+
+  # 4. Billing Service
+  - type: web
+    name: cortex-billing
+    env: node
+    rootDir: backend/services/billing
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 8004
+      - key: MONGODB_URL
+        sync: false
+      - key: VITE_RAZORPAY_KEY
+        sync: false
+      - key: RAZORPAY_SECRET
+        sync: false
+
+  # 5. API Gateway
+  - type: web
+    name: cortex-gateway
+    env: node
+    rootDir: backend/gateway
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: REDIS_URL
+        sync: false
+      - key: AUTH_SERVICE
+        fromService:
+          name: cortex-auth
+          type: web
+          property: host
+      - key: CHAT_SERVICE
+        fromService:
+          name: cortex-chat
+          type: web
+          property: host
+      - key: AGENT_SERVICE
+        fromService:
+          name: cortex-agent
+          type: web
+          property: host
+      - key: BILLING_SERVICE
+        fromService:
+          name: cortex-billing
+          type: web
+          property: host
