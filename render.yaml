@@ -44,9 +44,23 @@ services:
         value: 8003
       - key: REDIS_URL
         sync: false
+      - key: MONGODB_URL
+        sync: false
       - key: GOOGLE_API_KEY
         sync: false
       - key: TAVILY_API_KEY
+        sync: false
+      - key: AWS_ACCESS_KEY_ID
+        sync: false
+      - key: AWS_SECRET_ACCESS_KEY
+        sync: false
+      - key: AWS_REGION
+        sync: false
+      - key: AWS_BUCKET_NAME
+        sync: false
+      - key: QDRANT_URL
+        sync: false
+      - key: QDRANT_API_KEY
         sync: false
       - key: AUTH_SERVICE
         fromService:
