@@ -3,6 +3,7 @@ services:
   - type: web
     name: cortex-auth
     env: node
+    plan: free
     rootDir: backend/services/auth
     buildCommand: npm install
     startCommand: npm start
@@ -18,6 +19,7 @@ services:
   - type: web
     name: cortex-chat
     env: node
+    plan: free
     rootDir: backend/services/chat
     buildCommand: npm install
     startCommand: npm start
@@ -33,6 +35,7 @@ services:
   - type: web
     name: cortex-agent
     env: node
+    plan: free
     rootDir: backend/services/agent
     buildCommand: npm install
     startCommand: npm start
@@ -55,6 +58,7 @@ services:
   - type: web
     name: cortex-billing
     env: node
+    plan: free
     rootDir: backend/services/billing
     buildCommand: npm install
     startCommand: npm start
@@ -72,6 +76,7 @@ services:
   - type: web
     name: cortex-gateway
     env: node
+    plan: free
     rootDir: backend/gateway
     buildCommand: npm install
     startCommand: npm start
