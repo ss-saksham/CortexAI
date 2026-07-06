@@ -1,0 +1,94 @@
+version: "3.8"
+
+services:
+  redis:
+    image: redis:alpine
+    container_name: cortex_redis
+    ports:
+      - "6379:6379"
+    restart: always
+
+  auth:
+    build:
+      context: .
+      dockerfile: services/auth/Dockerfile
+    container_name: cortex_auth
+    ports:
+      - "8001:8001"
+    environment:
+      - PORT=8001
+      - MONGODB_URL=${MONGODB_URL}
+      - JWT_SECRET=${JWT_SECRET}
+    restart: always
+    depends_on:
+      - redis
+
+  chat:
+    build:
+      context: .
+      dockerfile: services/chat/Dockerfile
+    container_name: cortex_chat
+    ports:
+      - "8002:8002"
+    environment:
+      - PORT=8002
+      - MONGODB_URL=${MONGODB_URL}
+      - REDIS_URL=redis://redis:6379
+    restart: always
+    depends_on:
+      - redis
+
+  agent:
+    build:
+      context: .
+      dockerfile: services/agent/Dockerfile
+    container_name: cortex_agent
+    ports:
+      - "8003:8003"
+    environment:
+      - PORT=8003
+      - REDIS_URL=redis://redis:6379
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - TAVILY_API_KEY=${TAVILY_API_KEY}
+      - AUTH_SERVICE=http://auth:8001
+    restart: always
+    depends_on:
+      - redis
+
+  billing:
+    build:
+      context: .
+      dockerfile: services/billing/Dockerfile
+    container_name: cortex_billing
+    ports:
+      - "8004:8004"
+    environment:
+      - PORT=8004
+      - MONGODB_URL=${MONGODB_URL}
+      - VITE_RAZORPAY_KEY=${VITE_RAZORPAY_KEY}
+      - RAZORPAY_SECRET=${RAZORPAY_SECRET}
+    restart: always
+    depends_on:
+      - redis
+
+  gateway:
+    build:
+      context: .
+      dockerfile: gateway/Dockerfile
+    container_name: cortex_gateway
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - REDIS_URL=redis://redis:6379
+      - AUTH_SERVICE=http://auth:8001
+      - CHAT_SERVICE=http://chat:8002
+      - AGENT_SERVICE=http://agent:8003
+      - BILLING_SERVICE=http://billing:8004
+    restart: always
+    depends_on:
+      - redis
+      - auth
+      - chat
+      - agent
+      - billing
