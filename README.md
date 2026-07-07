@@ -87,7 +87,7 @@ graph TD
     
     AgentService --> Redis[(Valkey/Redis Cache)]
     AgentService --> Tavily[Tavily Search API]
-    AgentService --> Gemini[Gemini 2.5 Flash]
+    AgentService --> Gemini[Gemini 3.5 Flash]
     AgentService --> Llama[Llama 3.3 70B]
 ```
 

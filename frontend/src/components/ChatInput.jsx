@@ -382,7 +382,7 @@ catch(error){
                   selectedModel === "gemini" ? "text-white" : "hover:text-[#a1a1aa]"
                 }`}
               >
-                Gemini 2.5 Flash
+                Gemini 3.5 Flash
               </button>
               <span className="opacity-30">|</span>
               <button
