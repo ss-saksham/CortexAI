@@ -95,7 +95,7 @@ const [showBilling, setShowBilling] =useState(false);
 
       {/* Collapsed Rail Miniature Brand Logo */}
       <div className="w-8 h-8 rounded-lg bg-white/[0.02] border border-white/[0.06] flex items-center justify-center mb-3">
-        <span className="text-xs font-bold text-white font-mono">C</span>
+        <span className="text-xs font-bold text-white font-mono">A</span>
       </div>
 
       <button
@@ -196,10 +196,10 @@ const [showBilling, setShowBilling] =useState(false);
 
         {/* Miniature Brand Logo */}
         <div className="w-6 h-6 rounded-md bg-white/[0.02] border border-white/[0.06] flex items-center justify-center shrink-0">
-          <span className="text-[10px] font-bold text-white font-mono">C</span>
+          <span className="text-[10px] font-bold text-white font-mono">A</span>
         </div>
 
-        <span className="text-[13px] font-bold text-white tracking-tight flex-1">CortexAI</span>
+        <span className="text-[13px] font-bold text-white tracking-tight flex-1">Aether</span>
 
         <span className="text-[9px] font-mono text-[#a1a1aa] bg-white/[0.04] border border-white/[0.06] px-1.5 py-0.5 rounded uppercase tracking-wider">
          {userData?.plan ?? "free"}

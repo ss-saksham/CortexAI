@@ -48,7 +48,7 @@ const login=async (token)=>{
  
             <div className="flex flex-col gap-1 text-center">
               <h2 className="text-[17px] font-bold text-white tracking-tight">
-                CortexAI
+                Aether
               </h2>
               <p className="text-[12px] text-[#a1a1aa] leading-relaxed max-w-[240px] mx-auto">
                 Sign in to access your multi-agent workspace, search, and coding environments.

@@ -382,7 +382,7 @@ catch(error){
                   selectedModel === "gemini" ? "text-white" : "hover:text-[#a1a1aa]"
                 }`}
               >
-                Gemini
+                Gemini 2.5 Flash
               </button>
               <span className="opacity-30">|</span>
               <button
@@ -392,7 +392,7 @@ catch(error){
                   selectedModel === "groq" ? "text-white" : "hover:text-[#a1a1aa]"
                 }`}
               >
-                Groq
+                Llama 3.3 70B
               </button>
             </div>
           </div>
@@ -416,7 +416,7 @@ catch(error){
       </div>
 
       <p className="text-center text-[9px] font-mono text-[#52525b] mt-3">
-        CortexAI can make mistakes. Verify important info.
+        Aether can make mistakes. Verify important info.
       </p>
     </div>
   );

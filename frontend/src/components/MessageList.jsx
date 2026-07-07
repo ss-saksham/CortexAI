@@ -69,7 +69,7 @@ if (latestArtifactMessage) {
       {messages.length === 0 && !isLoading ? (
         <div className="max-w-xl mx-auto w-full py-16 px-4 flex flex-col items-start gap-8 select-none">
           <div className="flex flex-col items-start gap-1">
-            <span className="text-[10px] font-mono tracking-wider uppercase text-[#71717a]">CortexAI Studio</span>
+            <span className="text-[10px] font-mono tracking-wider uppercase text-[#71717a]">Aether Studio</span>
             <h1 className="text-2xl font-bold text-white tracking-tight mt-2">
               Hello, {userData?.name ? userData.name.split(" ")[0] : "there"}.
             </h1>

@@ -16,7 +16,7 @@ export default function BillingDrawer({ open, onClose }) {
         key: import.meta.env.VITE_RAZORPAY_KEY,
         amount: data.order.amount,
         currency: data.order.currency,
-        name: "CortexAI",
+        name: "Aether",
         description: `${data.plan.name} Plan`,
         order_id: data.order.id,
         handler: async (response) => {
