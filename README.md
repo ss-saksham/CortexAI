@@ -1,10 +1,24 @@
-# CortexAI 🧠✨
+<p align="center">
+  <img src="assets/logo.png" alt="CortexAI Logo" width="160" />
+</p>
 
-CortexAI is a premium, multi-agent AI workspace designed for code generation, real-time web searches, document processing, and interactive agent discussions. Built with a highly responsive, modern glassmorphic dashboard, it features a scalable microservices architecture routed through an API Gateway, backed by Redis and MongoDB.
+<h1 align="center">CortexAI</h1>
 
-[![Live Demo](https://img.shields.io/badge/Demo-Live%20on%20Vercel-6366f1?style=for-the-badge&logo=vercel&logoColor=white)](https://cortex-ai-jet.vercel.app/)
-[![Docker](https://img.shields.io/badge/Docker-Compliant-2496ED?style=for-the-badge&logo=docker&logoColor=white)](#production-docker-container)
-[![Render](https://img.shields.io/badge/Render-Deployed-46E3B7?style=for-the-badge&logo=render&logoColor=white)](#deployment)
+<p align="center">
+  CortexAI is a premium, multi-agent AI workspace designed for code generation, real-time web searches, document processing, and interactive agent discussions. Built with a highly responsive, modern glassmorphic dashboard, it features a scalable microservices architecture routed through an API Gateway, backed by Redis and MongoDB.
+</p>
+
+<p align="center">
+  <a href="https://cortex-ai-jet.vercel.app/">
+    <img src="https://img.shields.io/badge/Demo-Live%20on%20Vercel-6366f1?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo" />
+  </a>
+  <a href="#production-docker-container">
+    <img src="https://img.shields.io/badge/Docker-Compliant-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
+  </a>
+  <a href="#deployment">
+    <img src="https://img.shields.io/badge/Render-Deployed-46E3B7?style=for-the-badge&logo=render&logoColor=white" alt="Render" />
+  </a>
+</p>
 
 ---
 
