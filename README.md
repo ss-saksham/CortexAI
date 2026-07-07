@@ -1,8 +1,6 @@
 <p align="center">
-  <img src="assets/logo.png" alt="CortexAI Logo" width="160" />
+  <img src="assets/logo.png" alt="CortexAI Brand Banner" width="640" />
 </p>
-
-<h1 align="center">CortexAI</h1>
 
 <p align="center">
   CortexAI is a premium, multi-agent AI workspace designed for code generation, real-time web searches, document processing, and interactive agent discussions. Built with a highly responsive, modern glassmorphic dashboard, it features a scalable microservices architecture routed through an API Gateway, backed by Redis and MongoDB.
