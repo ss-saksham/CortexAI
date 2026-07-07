@@ -143,3 +143,4 @@ services:
   - type: redis
     name: cortex-redis
     plan: free
+    ipAllowList: []
