@@ -24,6 +24,14 @@ const app = express();
 app.use(express.json());
 const port=process.env.PORT
 
+app.get("/", (req, res) => {
+  res.status(200).json({
+    success: true,
+    service: "agent",
+    status: "ok"
+  });
+});
+
 app.use("/",router);
 
 app.use((err, req, res, next) => {

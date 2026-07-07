@@ -9,6 +9,14 @@ app.use(express.json());
 const port=process.env.PORT
 
 
+app.get("/", (req, res) => {
+  res.status(200).json({
+    success: true,
+    service: "chat",
+    status: "ok"
+  });
+});
+
 app.use("/",router)
 
 
