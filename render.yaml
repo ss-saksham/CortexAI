@@ -66,15 +66,9 @@ services:
       - key: QDRANT_API_KEY
         sync: false
       - key: AUTH_SERVICE
-        fromService:
-          name: cortex-auth
-          type: web
-          property: host
+        value: http://cortex-auth:8001
       - key: CHAT_SERVICE
-        fromService:
-          name: cortex-chat
-          type: web
-          property: host
+        value: http://cortex-chat:8002
 
   # 4. Billing Service
   - type: web
@@ -93,10 +87,7 @@ services:
       - key: RAZORPAY_KEY_SECRET
         sync: false
       - key: AUTH_SERVICE
-        fromService:
-          name: cortex-auth
-          type: web
-          property: host
+        value: http://cortex-auth:8001
 
   # 5. API Gateway
   - type: web
@@ -113,22 +104,10 @@ services:
       - key: CLIENT_URL
         sync: false
       - key: AUTH_SERVICE
-        fromService:
-          name: cortex-auth
-          type: web
-          property: host
+        value: http://cortex-auth:8001
       - key: CHAT_SERVICE
-        fromService:
-          name: cortex-chat
-          type: web
-          property: host
+        value: http://cortex-chat:8002
       - key: AGENT_SERVICE
-        fromService:
-          name: cortex-agent
-          type: web
-          property: host
+        value: http://cortex-agent:8003
       - key: BILLING_SERVICE
-        fromService:
-          name: cortex-billing
-          type: web
-          property: host
+        value: http://cortex-billing:8004
