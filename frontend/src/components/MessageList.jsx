@@ -130,7 +130,6 @@ if (latestArtifactMessage) {
             })}
           </div>
         </div>
-        </div>
       ) : (
         <div className="space-y-5">
           {messages.map((msg, index) => (
