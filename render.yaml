@@ -29,7 +29,9 @@ services:
       - key: MONGODB_URL
         sync: false
       - key: REDIS_URL
-        sync: false
+        fromDatabase:
+          name: cortex-redis
+          property: connectionString
 
   # 3. Agent Service
   - type: web
@@ -41,8 +43,6 @@ services:
     envVars:
       - key: PORT
         value: 8003
-      - key: REDIS_URL
-        sync: false
       - key: MONGODB_URL
         sync: false
       - key: GOOGLE_API_KEY
@@ -75,6 +75,10 @@ services:
           name: cortex-chat
           type: web
           property: host
+      - key: REDIS_URL
+        fromDatabase:
+          name: cortex-redis
+          property: connectionString
 
   # 4. Billing Service
   - type: web
@@ -108,8 +112,6 @@ services:
     envVars:
       - key: PORT
         value: 8000
-      - key: REDIS_URL
-        sync: false
       - key: CLIENT_URL
         sync: false
       - key: AUTH_SERVICE
@@ -132,3 +134,12 @@ services:
           name: cortex-billing
           type: web
           property: host
+      - key: REDIS_URL
+        fromDatabase:
+          name: cortex-redis
+          property: connectionString
+
+  # 6. Redis Database
+  - type: redis
+    name: cortex-redis
+    plan: free

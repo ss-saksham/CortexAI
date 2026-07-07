@@ -9,6 +9,10 @@ redis.on("connect", () => {
   console.log("✅ Redis Connected");
 });
 
+redis.on("error", (error) => {
+  console.error("❌ Redis Error:", error.message);
+});
+
 
 
 
