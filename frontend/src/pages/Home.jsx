@@ -49,16 +49,26 @@ const login=async (token)=>{
             <div className="relative w-16 h-16 flex items-center justify-center animate-logo-glow">
               <div className="absolute inset-0 rounded-full bg-indigo-500/10 blur-[8px] animate-pulse" />
               <svg width="44" height="44" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="relative">
-                <path d="M32 4L56 18V46L32 60L8 46V18L32 4Z" stroke="url(#loginHex)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                <circle cx="32" cy="32" r="8" fill="url(#loginCore)" />
+                <path d="M32 3L57 17.5V46.5L32 61L7 46.5V17.5L32 3Z" stroke="url(#loginHex)" strokeWidth="1.5" strokeLinejoin="round" opacity="0.35" />
+                <path d="M32 3L57 17.5V46.5L32 61" stroke="url(#loginHex)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M22 22C22 16.48 26.48 12 32 12C37.52 12 42 16.48 42 22C42 27.52 37.52 32 32 32" stroke="url(#loginCore)" strokeWidth="3" strokeLinecap="round" />
+                <path d="M42 42C42 47.52 37.52 52 32 52C26.48 52 22 47.52 22 42C22 36.48 26.48 32 32 32" stroke="url(#loginCore)" strokeWidth="3" strokeLinecap="round" />
+                <circle cx="32" cy="32" r="5" fill="url(#loginInner)" />
+                <circle cx="22" cy="22" r="3" fill="#22D3EE" />
+                <circle cx="42" cy="42" r="3" fill="#C084FC" />
                 <defs>
-                  <linearGradient id="loginHex" x1="8" y1="4" x2="56" y2="60">
+                  <linearGradient id="loginHex" x1="7" y1="3" x2="57" y2="61">
                     <stop stopColor="#818CF8" />
                     <stop offset="0.5" stopColor="#C084FC" />
                     <stop offset="1" stopColor="#22D3EE" />
                   </linearGradient>
-                  <linearGradient id="loginCore" x1="24" y1="24" x2="40" y2="40">
-                    <stop stopColor="#C084FC" />
+                  <linearGradient id="loginCore" x1="22" y1="12" x2="42" y2="52">
+                    <stop stopColor="#818CF8" />
+                    <stop offset="0.5" stopColor="#C084FC" />
+                    <stop offset="1" stopColor="#818CF8" />
+                  </linearGradient>
+                  <linearGradient id="loginInner" x1="27" y1="27" x2="37" y2="37">
+                    <stop stopColor="#22D3EE" />
                     <stop offset="1" stopColor="#818CF8" />
                   </linearGradient>
                 </defs>

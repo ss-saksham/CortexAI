@@ -138,27 +138,26 @@ if (latestArtifactMessage) {
             <div className="relative w-20 h-20 flex items-center justify-center mb-2">
               <div className="absolute inset-0 rounded-full bg-indigo-500/10 blur-[10px] animate-pulse" />
               <svg width="56" height="56" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="relative drop-shadow-[0_0_15px_rgba(99,102,241,0.5)]">
-                <path d="M32 4L56 18V46L32 60L8 46V18L32 4Z" stroke="url(#hexGradient)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M32 14L48 23.5V40.5L32 50L16 40.5V23.5L32 14Z" stroke="url(#hexGradient2)" strokeWidth="1.5" strokeDasharray="3 3" />
-                <circle cx="32" cy="32" r="6" fill="url(#coreGradient)" />
-                <line x1="32" y1="4" x2="32" y2="14" stroke="url(#hexGradient)" strokeWidth="1.5" />
-                <line x1="32" y1="50" x2="32" y2="60" stroke="url(#hexGradient)" strokeWidth="1.5" />
-                <line x1="8" y1="18" x2="16" y2="23.5" stroke="url(#hexGradient)" strokeWidth="1.5" />
-                <line x1="56" y1="18" x2="48" y2="23.5" stroke="url(#hexGradient)" strokeWidth="1.5" />
-                <line x1="8" y1="46" x2="16" y2="40.5" stroke="url(#hexGradient)" strokeWidth="1.5" />
-                <line x1="56" y1="46" x2="48" y2="40.5" stroke="url(#hexGradient)" strokeWidth="1.5" />
+                <path d="M32 3L57 17.5V46.5L32 61L7 46.5V17.5L32 3Z" stroke="url(#hexGradient)" strokeWidth="1.5" strokeLinejoin="round" opacity="0.35" />
+                <path d="M32 3L57 17.5V46.5L32 61" stroke="url(#hexGradient)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M22 22C22 16.48 26.48 12 32 12C37.52 12 42 16.48 42 22C42 27.52 37.52 32 32 32" stroke="url(#coreGradient)" strokeWidth="3" strokeLinecap="round" />
+                <path d="M42 42C42 47.52 37.52 52 32 52C26.48 52 22 47.52 22 42C22 36.48 26.48 32 32 32" stroke="url(#coreGradient)" strokeWidth="3" strokeLinecap="round" />
+                <circle cx="32" cy="32" r="5" fill="url(#coreInner)" />
+                <circle cx="22" cy="22" r="3" fill="#22D3EE" />
+                <circle cx="42" cy="42" r="3" fill="#C084FC" />
                 <defs>
-                  <linearGradient id="hexGradient" x1="8" y1="4" x2="56" y2="60" gradientUnits="userSpaceOnUse">
+                  <linearGradient id="hexGradient" x1="7" y1="3" x2="57" y2="61" gradientUnits="userSpaceOnUse">
                     <stop stopColor="#818CF8" />
                     <stop offset="0.5" stopColor="#C084FC" />
                     <stop offset="1" stopColor="#22D3EE" />
                   </linearGradient>
-                  <linearGradient id="hexGradient2" x1="16" y1="14" x2="48" y2="50" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#4F46E5" stopOpacity="0.4" />
-                    <stop offset="1" stopColor="#0891B2" stopOpacity="0.4" />
+                  <linearGradient id="coreGradient" x1="22" y1="12" x2="42" y2="52" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#818CF8" />
+                    <stop offset="0.5" stopColor="#C084FC" />
+                    <stop offset="1" stopColor="#818CF8" />
                   </linearGradient>
-                  <linearGradient id="coreGradient" x1="26" y1="26" x2="38" y2="38" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#C084FC" />
+                  <linearGradient id="coreInner" x1="27" y1="27" x2="37" y2="37" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#22D3EE" />
                     <stop offset="1" stopColor="#818CF8" />
                   </linearGradient>
                 </defs>

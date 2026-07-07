@@ -94,15 +94,25 @@ const [showBilling, setShowBilling] =useState(false);
       {/* Collapsed Rail Miniature Brand Logo */}
       <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#13151c] to-[#0f1115] border border-white/[0.08] flex items-center justify-center shadow-md mb-3">
         <svg width="15" height="15" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-[0_0_4px_rgba(99,102,241,0.5)]">
-          <path d="M32 4L56 18V46L32 60L8 46V18L32 4Z" stroke="url(#sideHexCollapsed)" strokeWidth="4" />
-          <circle cx="32" cy="32" r="10" fill="url(#sideCoreCollapsed)" />
+          <path d="M32 3L57 17.5V46.5L32 61L7 46.5V17.5L32 3Z" stroke="url(#sideHexCollapsed)" strokeWidth="1.5" strokeLinejoin="round" opacity="0.35" />
+          <path d="M32 3L57 17.5V46.5L32 61" stroke="url(#sideHexCollapsed)" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M22 22C22 16.48 26.48 12 32 12C37.52 12 42 16.48 42 22C42 27.52 37.52 32 32 32" stroke="url(#sideCoreCollapsed)" strokeWidth="4.5" strokeLinecap="round" />
+          <path d="M42 42C42 47.52 37.52 52 32 52C26.48 52 22 47.52 22 42C22 36.48 26.48 32 32 32" stroke="url(#sideCoreCollapsed)" strokeWidth="4.5" strokeLinecap="round" />
+          <circle cx="32" cy="32" r="7" fill="url(#sideInnerCollapsed)" />
+          <circle cx="22" cy="22" r="4.5" fill="#22D3EE" />
+          <circle cx="42" cy="42" r="4.5" fill="#C084FC" />
           <defs>
-            <linearGradient id="sideHexCollapsed" x1="8" y1="4" x2="56" y2="60">
+            <linearGradient id="sideHexCollapsed" x1="7" y1="3" x2="57" y2="61">
               <stop stopColor="#818CF8" />
               <stop offset="1" stopColor="#22D3EE" />
             </linearGradient>
-            <linearGradient id="sideCoreCollapsed" x1="22" y1="22" x2="42" y2="42">
-              <stop stopColor="#C084FC" />
+            <linearGradient id="sideCoreCollapsed" x1="22" y1="12" x2="42" y2="52">
+              <stop stopColor="#818CF8" />
+              <stop offset="0.5" stopColor="#C084FC" />
+              <stop offset="1" stopColor="#818CF8" />
+            </linearGradient>
+            <linearGradient id="sideInnerCollapsed" x1="27" y1="27" x2="37" y2="37">
+              <stop stopColor="#22D3EE" />
               <stop offset="1" stopColor="#818CF8" />
             </linearGradient>
           </defs>
@@ -207,15 +217,25 @@ const [showBilling, setShowBilling] =useState(false);
 
         {/* Miniature Neural Hexagon Logo */}
         <svg width="18" height="18" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-[0_0_4px_rgba(99,102,241,0.5)] shrink-0">
-          <path d="M32 4L56 18V46L32 60L8 46V18L32 4Z" stroke="url(#sideHex)" strokeWidth="4" />
-          <circle cx="32" cy="32" r="10" fill="url(#sideCore)" />
+          <path d="M32 3L57 17.5V46.5L32 61L7 46.5V17.5L32 3Z" stroke="url(#sideHex)" strokeWidth="1.5" strokeLinejoin="round" opacity="0.35" />
+          <path d="M32 3L57 17.5V46.5L32 61" stroke="url(#sideHex)" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M22 22C22 16.48 26.48 12 32 12C37.52 12 42 16.48 42 22C42 27.52 37.52 32 32 32" stroke="url(#sideCore)" strokeWidth="4.5" strokeLinecap="round" />
+          <path d="M42 42C42 47.52 37.52 52 32 52C26.48 52 22 47.52 22 42C22 36.48 26.48 32 32 32" stroke="url(#sideCore)" strokeWidth="4.5" strokeLinecap="round" />
+          <circle cx="32" cy="32" r="7" fill="url(#sideInner)" />
+          <circle cx="22" cy="22" r="4.5" fill="#22D3EE" />
+          <circle cx="42" cy="42" r="4.5" fill="#C084FC" />
           <defs>
-            <linearGradient id="sideHex" x1="8" y1="4" x2="56" y2="60">
+            <linearGradient id="sideHex" x1="7" y1="3" x2="57" y2="61">
               <stop stopColor="#818CF8" />
               <stop offset="1" stopColor="#22D3EE" />
             </linearGradient>
-            <linearGradient id="sideCore" x1="22" y1="22" x2="42" y2="42">
-              <stop stopColor="#C084FC" />
+            <linearGradient id="sideCore" x1="22" y1="12" x2="42" y2="52">
+              <stop stopColor="#818CF8" />
+              <stop offset="0.5" stopColor="#C084FC" />
+              <stop offset="1" stopColor="#818CF8" />
+            </linearGradient>
+            <linearGradient id="sideInner" x1="27" y1="27" x2="37" y2="37">
+              <stop stopColor="#22D3EE" />
               <stop offset="1" stopColor="#818CF8" />
             </linearGradient>
           </defs>

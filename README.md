@@ -62,7 +62,7 @@ The following diagram illustrates the flow of requests from the Vercel client th
 graph TD
     Client[React Client - Vercel] -->|HTTPS API Requests| Gateway[API Gateway - Port 8000]
     
-    subgraph Microservices Stack (Render)
+    subgraph "Microservices Stack (Render)"
         Gateway -->|Auth Validation| AuthService[Auth Service - Port 8001]
         Gateway -->|Chat & Message Ops| ChatService[Chat Service - Port 8002]
         Gateway -->|Prompt Logic| AgentService[Agent Service - Port 8003]
