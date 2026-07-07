@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="assets/logo.png" width="38" style="vertical-align: middle; margin-right: 6px;" /> CortexAI
+  CortexAI
 </h1>
 
 <p align="center">
