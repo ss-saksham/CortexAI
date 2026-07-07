@@ -23,19 +23,19 @@ export default function MessageList({ setValue, setSelectedAgent }) {
   const { selectedConversation } = useSelector(state => state.conversation);
   const dispatch = useDispatch();
 useEffect(() => {
-
   requestAnimationFrame(() => {
-
-    bottomRef.current?.scrollIntoView({
-
-      behavior: "smooth",
-
-      block: "end"
-
-    });
-
+    if (messages.length > 0 || isLoading) {
+      bottomRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "end"
+      });
+    } else {
+      const parent = bottomRef.current?.parentElement;
+      if (parent) {
+        parent.scrollTop = 0;
+      }
+    }
   });
-
 }, [messages.length, isLoading]);
   useEffect(() => {
     if (!selectedConversation || selectedConversation.title === "New Chat") return;
