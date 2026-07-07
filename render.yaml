@@ -110,6 +110,8 @@ services:
         value: 8000
       - key: REDIS_URL
         sync: false
+      - key: CLIENT_URL
+        sync: false
       - key: AUTH_SERVICE
         fromService:
           name: cortex-auth
