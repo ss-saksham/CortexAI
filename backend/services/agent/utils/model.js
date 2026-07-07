@@ -4,10 +4,19 @@ import { ChatOpenRouter } from "@langchain/openrouter";
 import dotenv from "dotenv";
 dotenv.config();
 
-export const gemini = new ChatGoogleGenerativeAI({
+const gemini35 = new ChatGoogleGenerativeAI({
   model: "gemini-3.5-flash",
   apiKey: process.env.GOOGLE_API_KEY
 });
+
+const gemini15 = new ChatGoogleGenerativeAI({
+  model: "gemini-1.5-flash",
+  apiKey: process.env.GOOGLE_API_KEY
+});
+
+// Configure LangChain fallbacks: if gemini-3.5-flash encounters a 503 (high demand) or other API errors,
+// it will automatically fall back to the ultra-stable gemini-1.5-flash.
+export const gemini = gemini35.withFallbacks([gemini15]);
 
 let groqInstance;
 const getGroq = () => {
@@ -16,13 +25,14 @@ const getGroq = () => {
     return gemini;
   }
   if (!groqInstance) {
-    groqInstance = new ChatGroq({
+    const primaryGroq = new ChatGroq({
       model: "llama-3.3-70b-versatile",
       temperature: 0,
       maxTokens: undefined,
       maxRetries: 2,
       apiKey: process.env.GROQ_API_KEY
     });
+    groqInstance = primaryGroq.withFallbacks([gemini]);
   }
   return groqInstance;
 };
@@ -34,12 +44,13 @@ const getOpenRouter = () => {
     return gemini;
   }
   if (!openRouterInstance) {
-    openRouterInstance = new ChatOpenRouter({
+    const primaryOpenRouter = new ChatOpenRouter({
       model: "deepseek/deepseek-chat",
       temperature: 0,
       maxTokens: 2500,
       apiKey: process.env.OPENROUTER_API_KEY
     });
+    openRouterInstance = primaryOpenRouter.withFallbacks([gemini]);
   }
   return openRouterInstance;
 };
