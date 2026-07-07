@@ -8,6 +8,18 @@ import { protect } from "./middlewares/auth.middleware.js";
 import { getCurrentUser } from "./controllers/user.controller.js";
 
 dotenv.config();
+
+const formatUrl = (url) => {
+  if (url && !url.startsWith("http://") && !url.startsWith("https://")) {
+    return `http://${url}`;
+  }
+  return url;
+};
+if (process.env.AUTH_SERVICE) process.env.AUTH_SERVICE = formatUrl(process.env.AUTH_SERVICE);
+if (process.env.CHAT_SERVICE) process.env.CHAT_SERVICE = formatUrl(process.env.CHAT_SERVICE);
+if (process.env.AGENT_SERVICE) process.env.AGENT_SERVICE = formatUrl(process.env.AGENT_SERVICE);
+if (process.env.BILLING_SERVICE) process.env.BILLING_SERVICE = formatUrl(process.env.BILLING_SERVICE);
+
 const app = express();
 const port = process.env.PORT || 5000;
 
