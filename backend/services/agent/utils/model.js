@@ -6,35 +6,30 @@ dotenv.config();
 
 const gemini35 = new ChatGoogleGenerativeAI({
   model: "gemini-3.5-flash",
+  maxRetries: 0, // Fail fast on invalid key/rate errors to trigger fallback immediately
   apiKey: process.env.GOOGLE_API_KEY
 });
 
 const gemini15 = new ChatGoogleGenerativeAI({
   model: "gemini-1.5-flash",
+  maxRetries: 0, // Fail fast to proceed to Groq fallback
   apiKey: process.env.GOOGLE_API_KEY
 });
 
-// Configure LangChain fallbacks: if gemini-3.5-flash encounters a 503 (high demand) or other API errors,
-// it will automatically fall back to the ultra-stable gemini-1.5-flash.
-export const gemini = gemini35.withFallbacks([gemini15]);
+const groqModel = process.env.GROQ_API_KEY ? new ChatGroq({
+  model: "llama-3.3-70b-versatile",
+  temperature: 0,
+  maxRetries: 2,
+  apiKey: process.env.GROQ_API_KEY
+}) : null;
 
-let groqInstance;
+// Construct fail-safe fallback chain
+export const gemini = groqModel 
+  ? gemini35.withFallbacks([gemini15, groqModel]) 
+  : gemini35.withFallbacks([gemini15]);
+
 const getGroq = () => {
-  if (!process.env.GROQ_API_KEY) {
-    console.warn("GROQ_API_KEY is missing. Falling back to Gemini.");
-    return gemini;
-  }
-  if (!groqInstance) {
-    const primaryGroq = new ChatGroq({
-      model: "llama-3.3-70b-versatile",
-      temperature: 0,
-      maxTokens: undefined,
-      maxRetries: 2,
-      apiKey: process.env.GROQ_API_KEY
-    });
-    groqInstance = primaryGroq.withFallbacks([gemini]);
-  }
-  return groqInstance;
+  return groqModel ? groqModel.withFallbacks([gemini15]) : gemini15;
 };
 
 let openRouterInstance;
