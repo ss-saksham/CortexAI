@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaGoogle } from "react-icons/fa";
 import ArtifactPanel from "../components/ArtifactPanel";
@@ -13,19 +13,33 @@ import CommandPalette from "../components/CommandPalette";
 
 function Home() {
   const { userData } = useSelector(state => state.user);
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
+  const [checkingAuth, setCheckingAuth] = useState(true);
   
-  const login=async (token)=>{
+  const login = async (token) => {
     try {
-      const {data}=await api.post(`/api/auth/login`,{token})
-      dispatch(setUserData(data.user))
+      const { data } = await api.post(`/api/auth/login`, { token });
+      dispatch(setUserData(data.user));
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
-    const handleRedirectResult = async () => {
+    const initAuth = async () => {
+      try {
+        // 1. Check if session cookie is already active
+        const { data } = await api.get("/api/me");
+        if (data && data.user) {
+          dispatch(setUserData(data.user));
+          setCheckingAuth(false);
+          return;
+        }
+      } catch (err) {
+        console.log("No active session found:", err.message);
+      }
+
+      // 2. Check for Firebase Auth redirect results
       try {
         const result = await getRedirectResult(auth);
         if (result) {
@@ -34,9 +48,11 @@ function Home() {
         }
       } catch (error) {
         console.error("Redirect login error:", error);
+      } finally {
+        setCheckingAuth(false);
       }
     };
-    handleRedirectResult();
+    initAuth();
   }, []);
 
   const handleGoogleLogin = async () => {
@@ -56,6 +72,14 @@ function Home() {
       console.error("Google Login Error:", error);
     }
   };
+
+  if (checkingAuth) {
+    return (
+      <div className="h-screen w-screen bg-[#0a0a0b] flex items-center justify-center select-none">
+        <div className="w-5 h-5 border border-white/10 border-t-white rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <div className="relative h-screen flex bg-[#0a0a0b] text-[#f4f4f5] overflow-hidden font-sans select-none">
