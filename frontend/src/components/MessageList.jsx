@@ -18,25 +18,28 @@ function GeneratingIndicator() {
 export default function MessageList({ setValue, setSelectedAgent }) {
 
   const bottomRef = useRef(null);
+  const containerRef = useRef(null);
   const { messages, isLoading } = useSelector(state => state.message);
   const { userData } = useSelector(state => state.user);
   const { selectedConversation } = useSelector(state => state.conversation);
   const dispatch = useDispatch();
-useEffect(() => {
-  requestAnimationFrame(() => {
+
+  useEffect(() => {
     if (messages.length > 0 || isLoading) {
       bottomRef.current?.scrollIntoView({
         behavior: "smooth",
         block: "end"
       });
     } else {
-      const parent = bottomRef.current?.parentElement;
-      if (parent) {
-        parent.scrollTop = 0;
-      }
+      // Reset layout container scroll offset after DOM paint finishes
+      const timer = setTimeout(() => {
+        if (containerRef.current) {
+          containerRef.current.scrollTop = 0;
+        }
+      }, 50);
+      return () => clearTimeout(timer);
     }
-  });
-}, [messages.length, isLoading]);
+  }, [messages.length, isLoading]);
   useEffect(() => {
     if (!selectedConversation || selectedConversation.title === "New Chat") return;
     const get = async () => {
@@ -65,7 +68,7 @@ if (latestArtifactMessage) {
   }, [selectedConversation?._id]);
 
   return (
-    <div className="flex-1 overflow-y-auto px-6 py-6 space-y-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+    <div ref={containerRef} className="flex-1 overflow-y-auto px-6 py-6 space-y-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       {messages.length === 0 && !isLoading ? (
         <div className="max-w-xl mx-auto w-full py-16 px-4 flex flex-col items-start gap-8 select-none">
           <div className="flex flex-col items-start gap-1">
