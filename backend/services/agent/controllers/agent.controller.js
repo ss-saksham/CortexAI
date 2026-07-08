@@ -3,97 +3,87 @@ import { graph } from "../graph/supervisor.graph.js";
 import { addMessage } from "../utils/memory.js";
 import axios from "axios"
 
-export const chat =
-async(req,res,next)=>{
+export const chat = async (req, res, next) => {
+  let keepAliveInterval;
+  try {
+    const {
+      prompt,
+      conversationId,
+      agent,
+      model
+    } = req.body;
 
- try{
+    console.log(req.body);
+    console.log(req.file);
 
-  const {
+    await addMessage(
+      conversationId,
+      "user",
+      prompt
+    );
 
-   prompt,
+    await axios.post(`${process.env.CHAT_SERVICE}/save-message`, {
+      conversationId,
+      role: "user",
+      content: prompt
+    });
 
-   conversationId,
+    // Write headers and start keep-alive heartbeats to satisfy Render's 30s timeout
+    res.writeHead(200, {
+      "Content-Type": "application/json",
+      "Transfer-Encoding": "chunked"
+    });
 
-   agent,
+    keepAliveInterval = setInterval(() => {
+      res.write(" "); // Send space byte to keep connection active
+    }, 12000); // 12 seconds interval (well under Render's 30s threshold)
 
-   model
+    const result = await graph.invoke({
+      prompt,
+      conversationId,
+      userId: req.headers["x-user-id"],
+      agent,
+      model,
+      file: req.file
+    });
 
-} = req.body;
+    if (keepAliveInterval) {
+      clearInterval(keepAliveInterval);
+    }
 
-console.log(req.body)
-console.log(req.file)
+    console.log("after res", result);
 
-await addMessage(
- conversationId,
- "user",
- prompt
-);
+    await addMessage(
+      conversationId,
+      "assistant",
+      result.response
+    );
 
-await axios.post(`${process.env.CHAT_SERVICE}/save-message`,{
-  conversationId,
-  role:"user",
-  content:prompt
-})
+    await axios.post(
+      `${process.env.CHAT_SERVICE}/save-message`,
+      {
+        conversationId,
+        role: "assistant",
+        content: result.response,
+        images: result.images,
+        artifacts: result.artifacts || []
+      }
+    );
 
+    // Send final JSON package
+    res.write(JSON.stringify({
+      success: true,
+      answer: result.response,
+      images: result.images,
+      artifacts: result.artifacts || []
+    }));
 
+    res.end();
 
-
-
-
-
-  const result =
-  await graph.invoke({
-
-   prompt,
-
-   conversationId,
-
-   userId:
-   req.headers[
-    "x-user-id"
-   ],
-   agent,
-   model,
-   file:req.file
-
-  });
-
-
-  console.log("after res",result)
-
-  await addMessage(
- conversationId,
- "assistant",
- result.response
-);
-await axios.post(
- `${process.env.CHAT_SERVICE}/save-message`,
- {
-  conversationId,
-  role:"assistant",
-  content:result.response,
-  images:result.images,
-  artifacts:
-  result.artifacts || []
- }
-)
-
-  return res.json({
-
- success:true,
-
- answer:
- result.response,
- images:result.images,
- artifacts:
- result.artifacts || []
-
-});
-
- }catch(error){
-
-  next(error)
-
- }
-
-}
+  } catch (error) {
+    if (keepAliveInterval) {
+      clearInterval(keepAliveInterval);
+    }
+    next(error);
+  }
+};
