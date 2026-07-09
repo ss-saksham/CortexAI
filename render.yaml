@@ -75,12 +75,12 @@ services:
         fromService:
           name: cortex-auth
           type: web
-          property: host
+          property: url
       - key: CHAT_SERVICE
         fromService:
           name: cortex-chat
           type: web
-          property: host
+          property: url
       - key: REDIS_URL
         fromService:
           name: cortex-redis
@@ -107,7 +107,7 @@ services:
         fromService:
           name: cortex-auth
           type: web
-          property: host
+          property: url
 
   # 5. API Gateway
   - type: web
@@ -125,22 +125,22 @@ services:
         fromService:
           name: cortex-auth
           type: web
-          property: host
+          property: url
       - key: CHAT_SERVICE
         fromService:
           name: cortex-chat
           type: web
-          property: host
+          property: url
       - key: AGENT_SERVICE
         fromService:
           name: cortex-agent
           type: web
-          property: host
+          property: url
       - key: BILLING_SERVICE
         fromService:
           name: cortex-billing
           type: web
-          property: host
+          property: url
       - key: REDIS_URL
         fromService:
           name: cortex-redis

@@ -81,6 +81,16 @@ app.get("/", (req, res) => {
   });
 });
 
+// Global proxy connection error handling middleware
+app.use((err, req, res, next) => {
+  console.error("❌ Gateway Proxy Error:", err.message);
+  return res.status(502).json({
+    success: false,
+    message: "Backend service connection failed. The microservice may be sleeping or offline.",
+    error: err.message
+  });
+});
+
 app.listen(port, () => {
   console.log(`Gateway running on ${port}`);
 });
