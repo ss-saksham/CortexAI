@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://cortex-ai-jet.vercel.app/">
+  <a href="https://aether--ai-jet.vercel.app/">
     <img src="https://img.shields.io/badge/Demo-Live%20on%20Vercel-6366f1?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo" />
   </a>
   <a href="#production-docker-container">
